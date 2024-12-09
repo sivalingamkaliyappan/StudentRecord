@@ -43,22 +43,10 @@ class database:
         self.cursor.execute("update Student set ADMNNO=?,NAME=?,CLASS=?,CONTACT=?,ADDRESS=?,dob=?,MENTOR=?,HEIGHT=?,WEIGHT=?,CHARACTER=? ",(ADMNNO,NAME,CLASS,CONTACT,ADDRESS,dob,MENTOR,HEIGHT,WEIGHT,CHARACTER))
         self.connection.commit()
         
-        
-       
-    
-
-
-
 db=database("students.db")
-
-
-
-
 
 root=Tk()
 root.title("Sivalingaiit's school students record")
-root.iconbitmap(r'D:/project/icon.ico')
-
 root.geometry("1350x700+0+0")
 root.config(bg="TEAL")
 
@@ -75,11 +63,6 @@ CHARACTER=StringVar()
 
 label=Label(root,text=" MERCY   SCHOOL   STUDENTS   RECORD ",font=("",32,"bold"),fg="black",bg="white")
 label.grid(padx=330,pady=20)
-
-
-
-
-
 
 
 frame=Frame(root,bd=10,relief=FLAT,bg="#2c3e50")
@@ -156,12 +139,6 @@ def get(event):
     WEIGHT.set(row[8])
     CHARACTER.set(row[9])
 
-
-
-
-
-
-
 def displayall():
     #this code is for non repition of the rows present in database,children means everything in the treeview
     Std_table.delete(*Std_table.get_children())
@@ -180,8 +157,6 @@ def adding():
          displayall()
     
 def updating():
-
-    
     if text2.get()=="" or text4.get()=="" or text6.get()=="" or text8.get()=="" or text10.get()=="" or text12.get()=="" or text14.get()=="" or text16.get()=="" or text18.get()=="" or text20.get()=="":
         messagebox.showerror(" Sivalingaiit  - ERROR   "," PLEASE FILL ALL THE FIELD ")
         return
@@ -197,9 +172,6 @@ def deleting():
     db.remove(row[0])
     clearall()
     displayall()
-
-
-
    
 def clearall():
     ADMNNO.set("")
@@ -212,34 +184,6 @@ def clearall():
     HEIGHT.set("")
     WEIGHT.set("")
     CHARACTER.set("")
-
-
-
-
-
-
-
-
-   
-
-
-
-          
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 button_frame=Frame(root,bd=2,relief=FLAT,bg="teal")
 button_frame.place(x=600,y=550,width=730,height=80)
@@ -257,21 +201,6 @@ Add_button1.grid(row=0,column=2,padx=45,pady=28)
 Add_button3=Button(button_frame,text="DELETE",font=("white",10,"bold"),width=12,command=deleting,bg='green',fg='black')
 Add_button3.grid(row=0,column=3,padx=28,pady=28)
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 style=ttk.Style()
 style.theme_use("clam")
 style.configure("Treeview",
@@ -282,7 +211,6 @@ style.configure("Treeview",
 style.map('Treeview',
           background=[('selected','blue')])
 def searching():
-
     try:
         connection=sqlite3.connect("students.db")
         cursor=connection.cursor()
@@ -309,24 +237,10 @@ def refresh():
         Std_table.insert("",END,values=row)
     clearall()
         
-
-        
-    
-    
-
-
-
-
-
-
-
-
-
 search_frame=Frame(root,relief=FLAT,bg="teal")
 search_frame.place(x=590,y=100,width=700,height=40)
 
 
-#search
 
 searchbox=Entry(search_frame,font=("times new roman",20,"bold"),bd=1,width=10)
 searchbox.grid(row=0,column=1,ipadx=1,ipady=1,padx=1)
@@ -337,26 +251,11 @@ search.grid(row=0,column=4,padx=30)
 Refresh=Button(search_frame,text="REFRESH",font=("yellow",10,"bold"),command=refresh,width=12,bg='indigo',fg='white')
 Refresh.grid(row=0,column=8,padx=30)
 
-
-
-
-
-
-
-
-
-
-
-
-
 frame2=Frame(root,bd=2,relief=FLAT,bg="teal")
 frame2.place(x=580,y=150,width=735,height=400)
 
-
-
 Table=Frame(frame2,bd=6,bg="teal",relief=FLAT)
 Table.place(width=735,height=400)
-
 
 scroll_x=Scrollbar(Table,orient=HORIZONTAL)
 scroll_y=Scrollbar(Table,orient=VERTICAL)
@@ -396,11 +295,6 @@ Std_table.column("CHARACTER",anchor=CENTER,width=150)
 Std_table.bind("<ButtonRelease-1>",get)
 
 Std_table.pack(fill=BOTH,expand=1)
-
-
-
-
-
 
 
 displayall()
